@@ -1,3 +1,4 @@
+
 public class Recursion {
 public String name(){
     return "Lanier,Benjamin";
@@ -7,6 +8,8 @@ public String name(){
 public static void main(String[] args){
     Recursion rec = new Recursion();
     System.out.println(rec.fact(3));
+    System.out.println(rec.fib(6));
+    System.out.println(rec.sqrt(16));
 }
 
 public int fact(int n){
@@ -14,7 +17,9 @@ public int fact(int n){
 	throw new IllegalArgumentException("Input must be greater than 0");
 
 
-    }else{
+    }else if (n== 0){
+	return 1;
+    } else{
 	return n * fact(n-1);
     }
 }
@@ -34,7 +39,7 @@ public int fib(int n){
 	 return fib(n-1) + fib(n-2);
      }
 
-	     }
+}
 
 public double sqrt(double n){
 
