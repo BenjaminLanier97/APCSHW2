@@ -11,7 +11,7 @@ public static void main(String[] args){
 
 public int fact(int n){
     if (n < 0){
-	throw new IllegalArguementException("Input must be greater than 0");
+	throw new IllegalArgumentException("Input must be greater than 0");
 
 
     }else{
@@ -22,7 +22,7 @@ public int fact(int n){
 public int fib(int n){
 
  if (n < 0){
-	throw new IllegalArguementException("Input must be greater than 0");
+	throw new IllegalArgumentException("Input must be greater than 0");
 
  } else if (n == 0){
      return 0;
@@ -30,16 +30,16 @@ public int fib(int n){
      else if (n == 1){
 	 return 1;
      }
-     else 
-	 return fib(n-1) + fib(n-2)
-
+     else {
+	 return fib(n-1) + fib(n-2);
+     }
 
 	     }
 
 public double sqrt(double n){
 
      if (n < 0){
-	throw new IllegalArguementException("Input must be greater than 0");
+	throw new IllegalArgumentException("Input must be greater than 0");
 
 
      } else if (n == 0){
@@ -58,8 +58,7 @@ public double sqrthelper(double n, double guess){
     return sqrthelper(n, a);
 }
 }
-
-
+}
 
 
 
