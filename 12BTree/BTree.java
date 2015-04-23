@@ -6,9 +6,11 @@ public class BTree<E> {
     public static final int PRE_ORDER = 0;
     public static final int IN_ORDER = 1;
     public static final int POST_ORDER = 2;
+    private 
     
 
     private TreeNode<E> root;
+    T Data;
 
     public BTree() {
 	root = null;
@@ -21,6 +23,13 @@ public class BTree<E> {
       Wrapper method for the recursive add()
       ====================*/     
     public void add( E d ) { }
+    Random rand = new Random;
+    if (curr.getRight() = null && curr.getLeft() = nul){
+	If (Rand.nextBoolean()){
+
+	}
+
+    }
 
     /*======== public void add() ==========
       Inputs:   TreeNode<E> curr, TreeNode<E> bn  
@@ -130,6 +139,11 @@ public class BTree<E> {
 
       ====================*/
     public String toString() {
+	String Roots ="";
+	for (Root: Roots){
+	    Root +=;
+	    
+	}
 	return "";
     }
 	
