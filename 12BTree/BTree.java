@@ -26,6 +26,15 @@ public class BTree<E> {
     Random rand = new Random;
     if (curr.getRight() = null && curr.getLeft() = nul){
 	If (Rand.nextBoolean()){
+	add(curr.getLeft(), bn);
+	}
+else{
+	add(curr.getRight(), bn);
+
+
+}
+else{
+if (curr.getLeft() ==null
 
 	}
 
@@ -144,7 +153,7 @@ public class BTree<E> {
 	    Root +=;
 	    
 	}
-	return "";
+	return Roots;
     }
 	
 
