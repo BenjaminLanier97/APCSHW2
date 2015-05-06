@@ -22,6 +22,15 @@ public class BTree<E> {
       
       Wrapper method for the recursive add()
       ====================*/     
+      
+      public void add( E d ) { 
+      	if (root ==null) {
+      		root = new TreeNode<T>(value);
+      	} else{
+      		add (root, new TreeNode,T>(value))
+      	}
+      }
+      
     public void add( E d ) { }
     Random rand = new Random;
     if (curr.getRight() = null && curr.getLeft() = nul){
