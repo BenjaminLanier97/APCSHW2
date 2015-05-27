@@ -1,4 +1,7 @@
-public MyHeap{
+import java.util.*;
+
+public class MyHeap{
+   	private int[] values;
     private int size;
     private heap
 	private int isMax;
