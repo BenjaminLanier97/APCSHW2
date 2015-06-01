@@ -2,14 +2,13 @@ import java.util.*;
 
 public class MyHeap{
    	private int[] values;
-    private int size;
 	private boolean isMax;
     
  
      
      public MyHeap(boolean isMax1){
          values = new int[50];
-         size = 50;
+         values[0] = 0;
          isMax = isMax1;   
     	 }
          
@@ -19,7 +18,7 @@ public class MyHeap{
 	    }
     public String toString(){
         String final1 = "";
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < values[0]; i++){
             final1 += values[i] + " ";
             
             
@@ -45,8 +44,10 @@ public class MyHeap{
     }
     
     public boolean CompareNodes(int index1, int index2){
-        
-        
+        if (isMax){
+            return values[index1] > values[index2];
+        }
+        return values[index1] < values[index2];
         
     }
     
@@ -67,7 +68,12 @@ public class MyHeap{
     }
     
     public void resize(){
-        values = Arrays.copyOf(values, size * 2);
+        if (values[0] == values.length -1){
+        values = Arrays.copyOf(values, values[0] * 2);
+        } else if (values[0] < values.length/2){
+            values = Arrays.copyOf(values, values.length / 2)
+            
+        }
         
     }
         
@@ -78,12 +84,27 @@ public class MyHeap{
 
     public int remove() {
         
+        if (heap[0] == 0){
+            throw new NoSuchElementException();
+            
+        }
+        int TemporaryStorage = values[1];
+        values[1] = values[values[0]];
+        values[0] = values[0] - 1;
+        MoveValueDown(1);    
+        return TemporaryStorage;
+        
+    }
+    
+    public MoveValueDown(int index){
+        
+        
         
         
     }
 
 
- remove the root and return the value  O(logn)
+
 
 public void add(int) -> add the int to the heap  O(logn)
     if (isMax){
@@ -106,8 +127,11 @@ public void add(int) -> add the int to the heap  O(logn)
 }
 
    public int peek(){
-       if (size == 0){
-           System.out.print("
-         return heap[0];
-         }	
+       if (values[0] == 0){
+           throw new NoSuchElementException();
+       }
+         return heap[1];
+         
+}
+
 }
