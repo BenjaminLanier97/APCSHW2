@@ -39,12 +39,24 @@ public RunningMedian {
     }
     
     public void add(int value){
-        
-        
+        if (value < getMedian()){
+				smaller.add(value);
+        } else{
+				larger.add(value);
+        }            
+          Rebalance();
         
     }
     
-    public void rebalance(){
+    public void Rebalance(){
+        int SizeDifference = larger.size() - smaller.size();
+        if (SizeDifference > 1){
+            smaller.add(larger.remove());
+            
+        } else if (SizeDifference < -1){
+            larger.add(smaller.remove());
+            
+        }
         
         
     }
