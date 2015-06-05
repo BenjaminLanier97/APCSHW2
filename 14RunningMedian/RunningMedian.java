@@ -1,4 +1,4 @@
-public RunningMedian {
+public class RunningMedian {
     
     private MyHeap smaller, larger;
     
@@ -13,33 +13,34 @@ public RunningMedian {
         return "lanier.benjamin";
     }
     
-    public static void main(String args[]){
+    public static void main(String [ ] args){
            RunningMedian RM1 = new RunningMedian();
-           RM1.add(7);
+                   RM1.add(4);
+                System.out.println(RM1.GetMedian() + "    Median " + RM1);
            RM1.add(6);
+                System.out.println(RM1.GetMedian() + "    Median " + RM1);
            RM1.add(8);
+                System.out.println(RM1.GetMedian() + "    Median " + RM1);
+         System.out.println(RM1.GetMedian() + "    Median " + RM1);
            RM1.add(4);
            RM1.add(10);
+         System.out.println(RM1.GetMedian() + "    Median " + RM1);
            RM1.add(61);
            RM1.add(2);
            RM1.add(12);
-           RM1.add(0);
            RM1.add(9);
-           System.out.println(RM1.getMedian() + " " + RM1);
-           RM1.add(-1);
-           RM1.add(2);
+           System.out.println(RM1.GetMedian() + "    Median " + RM1);
            RM1.add(7);
-       	   System.out.println(RM1.getMedian() + " " + RM1);
+       	   System.out.println(RM1.GetMedian() + "   Median      " + RM1);
            RM1.add(14);
-	       RM1.add(-3);
            RM1.add(23);
-           System.out.println(RM1.getMedian() + " " + RM1);
+           System.out.println(RM1.GetMedian() + "   Median     " + RM1);
         
         
     }
     
     public void add(int value){
-        if (value < getMedian()){
+        if ((larger.size() == 0 && smaller.size() == 0) || value < GetMedian()){
 				smaller.add(value);
         } else{
 				larger.add(value);
@@ -62,12 +63,29 @@ public RunningMedian {
     }
     
     public double GetMedian(){
-        
-        
+      if (smaller.size() == 0){
+            return larger.peek();
+        }else if (larger.size() == 0){
+            return smaller.peek();
+              
+            } else if ((larger.size() + smaller.size()) % 2 == 0){
+            return ((smaller.peek() + larger.peek()) / 2.0);
+       
+        }else if (smaller.size() > larger.size()){
+				return smaller.peek();            
+        } else {
+            return larger.peek();
+        }
     }
+        
+            
+            
+                
+          
+            
     
     public String toString(){
-        return smaller + " " larger;
+        return smaller + " " + larger;
     }
     
 
