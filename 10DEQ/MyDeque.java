@@ -1,10 +1,15 @@
 import java.util.*
     
 public class MyDeque<T>{
-    private int Head, Tail;
+    private int Head, Tail, Size;
     private Object[] Objects;
     
     public MyDeque(){
+        Size = 0;
+        head = 11;
+        tail = 10;
+        Objects = new Objects[20];
+        
         
         
     }
@@ -14,13 +19,28 @@ public class MyDeque<T>{
         
     }
     
-    public void addFirst(T value){
-        
+    public void Resize(){
         
         
     }
     
-    public void addLast(T value){
+    public void addFirst(T data){
+        if (isFull()){
+            Resize();
+            
+        }
+        Size++;
+        Head--;
+        if (Head < 0){
+            Head = Objects.length -1;
+            
+        }
+        
+	Objects[Head] = data;        
+        
+    }
+    
+    public void addLast(T data){
         
         
         
@@ -36,9 +56,24 @@ public class MyDeque<T>{
     
     public T getLast(){
         
+               if (Size == 0){
+            throw new NoSuchElementException();
+            
+        }
+        
+        return (T)Objects[Head];
+        
+        
+        
     }
     
     public T getFirst(){
+        if (Size == 0){
+            throw new NoSuchElementException();
+            
+        }
+        
+        return (T)Objects[Tail];
         
         
     }
