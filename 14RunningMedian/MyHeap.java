@@ -31,6 +31,10 @@ public class MyHeap{
         
     }
     
+    public int size(){
+        return values[0];
+    }
+    
     public int GetLeftValue(int value){
         return value * 2;
         
@@ -156,9 +160,10 @@ public class MyHeap{
 
                 public void add(int newIndex){
                  
-                    values[0]++;
-                    values[values[0]] = newIndex;
-                    MoveValueUp(values[0]);
+           
+                    values[values[0] + 1] = newIndex;
+                    MoveValueUp(values[0] + 1);
+                             values[0]++;
                     resize();
    
 				}
