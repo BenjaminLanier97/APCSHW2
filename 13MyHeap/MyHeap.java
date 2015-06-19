@@ -157,8 +157,8 @@ public class MyHeap{
                 public void add(int newIndex){
                  
                     values[0]++;
-                    values[values[0]] = newIndex;
-                    MoveValueUp(values[0]);
+                    values[values[0] + 1] = newIndex;
+                    MoveValueUp(values[0] + 1);
                     resize();
    
 				}
