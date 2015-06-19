@@ -41,9 +41,24 @@ public class MyDeque<T>{
     }
     
     public void addLast(T data){
+        if (isFull()){
+            Resize();
+        }
+        Size++;
+        Tail++;
+        if (Tail > Objects.length -1){
+            Tail = 0;
+            
+        }
+        Objects[Tail] = data;
         
-        
-        
+    }
+    
+    public boolean isEmpty(){
+        if (size == 0){
+            return true;
+        }
+        return false;
     }
     
     public T removeFirst(){
