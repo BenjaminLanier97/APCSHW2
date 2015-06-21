@@ -1,8 +1,9 @@
-import java.util.*
+import java.util.*;
+import java.lang.*;
     
 public class MyDeque<T>{
     private int Head, Tail, Size;
-    private Object[] Objects;
+    private T[] Objects;
     private boolean SizeVar;
     
     public MyDeque(){
@@ -10,12 +11,12 @@ public class MyDeque<T>{
         
         
     }
-    
+     @SuppressWarnings("unchecked")
     public MyDeque(boolean b){
         Size = 0;
-        head = 11;
-        tail = 10;
-        Objects = new Objects[20];
+        Head = 11;
+        Tail = 10;
+        Objects = (T[]) (new Object[20]);
 		SizeVar = b;
     }
     
@@ -26,14 +27,69 @@ public class MyDeque<T>{
         
     }
     
-    public void Resize(){
-        
+   
+     @SuppressWarnings("unchecked")
+    public void Resize(boolean b){
+        T[] NewArray;
+        if (b){
+             NewArray = (T[]) (new Object[Objects.length * 2]);
+            if (Head > Tail){
+                for (int i = Head; i < Objects.length; i++){
+                    NewArray[i] = Objects[i];
+                    
+                }
+                
+                for (int i = 0; i <=Tail; i++){
+                    NewArray[i + Objects.length] = Objects[i];
+                }
+				Tail = Tail + Objects.length;               
+                    
+            } else{
+                 for (int i = Head; i<= Tail; i++){
+                    NewArray[i] = Objects[i];
+                
+            }
+            }
+            
+            
+            } else{
+            NewArray = (T[]) (new Object[Objects.length/2]);
+            int initializer;
+                
+                if (Head > Tail){
+                    initializer = 0;
+                    for (int i =Head; i < Objects.length; i++){
+                        NewArray[initializer] = Objects[initializer];
+                        initializer++;
+                        
+                    }
+                    for (int i = 0; i <=Tail; i++){
+                         NewArray[initializer] = Objects[initializer];
+                        initializer++;
+                    }
+                    
+                                        
+                } else{
+                    initializer = 0;
+                    for (int i = Head; i <= Tail; i++){
+						NewArray[initializer] = Objects[i];
+                        initializer++;
+                        }
+                    
+                }
+            
+            
+            Head = 0;
+            Tail = initializer - 1;
+        }
+                        
+		Objects = NewArray;    
         
     }
     
     public void addFirst(T data){
         if (isFull()){
-            Resize();
+            Resize(true);
             
         }
         Size++;
@@ -49,7 +105,7 @@ public class MyDeque<T>{
     
     public void addLast(T data){
         if (isFull()){
-            Resize();
+            Resize(true);
         }
         Size++;
         Tail++;
@@ -62,33 +118,36 @@ public class MyDeque<T>{
     }
     
     public boolean isEmpty(){
-        if (size == 0){
+        if (Size == 0){
             return true;
         }
         return false;
     }
     
-    public T removeFirst(){
+ @SuppressWarnings("unchecked")
+ public T removeFirst(){
           if (isEmpty()){
             throw new NoSuchElementException();
             
         }
         Size--;
         if (SizeVar && (Objects.length)/4 >= Size){
-            Resize();
+            Resize(false);
             
         }
         Object ObjectReturned = (T) Objects[Head];
+     Objects[Head] = null;
         Head++;
         if (Head > Objects.length -1){
             Head = 0;
 		
         }
             
-       return ObjectReturned;
+       return (T)ObjectReturned;
         
     }
     
+ @SuppressWarnings("unchecked")
     public T removeLast(){
         if (isEmpty()){
             throw new NoSuchElementException();
@@ -98,23 +157,24 @@ public class MyDeque<T>{
           
         Size--;
         if (SizeVar && (Objects.length)/4 >= Size){
-            Resize();
+            Resize(false);
             
         }
-        Object ObjectReturned = (T) Objects[Tail];
+        Object ObjectReturned = (T)Objects[Tail];
+        Objects[Tail] = null;
         Tail--;
         if (Tail < 0){
             Tail = Objects.length -1;
 		
         }
             
-       return ObjectReturned;
+       return (T) ObjectReturned;
         
         
 
 
     }
-    
+     @SuppressWarnings("unchecked")
     public T getLast(){
         
                if (Size == 0){
@@ -127,7 +187,7 @@ public class MyDeque<T>{
         
         
     }
-    
+     @SuppressWarnings("unchecked")
     public T getFirst(){
         if (Size == 0){
             throw new NoSuchElementException();
@@ -140,68 +200,42 @@ public class MyDeque<T>{
     }
     
     public String toString(){
-        StringBuider SB = new StringBuilder();
+        StringBuilder SB = new StringBuilder();
         SB.append("Head:");
         SB.append(Head);
-        SB.append("/n");
-        SB.append("Tail);
+        SB.append("\n");
+        SB.append("Tail:");
         SB.append(Tail);
         
-       SB.append("/n{");
-      while (int i = 0; i < Objects.length; i ++){
+       SB.append("\n[");
+      for (int i = 0; i < Objects.length; i++){
+          if (Objects[i] != null){
             SB.append(Objects[i] + ",");
+          }
         
       }        
-            SB.append("}");
+            SB.append("]");
+        return SB.toString();
         
         
     }
     
     public boolean isFull(){
-        while (int i = 0; i < Objects.length; i ++){
-            if (Objects[i] = null){
+        for (int i = 0; i < Objects.length; i++){
+            if (Objects[i] == null){
                 return false;
                 
             }
-            else{
+        }
                 return true;
                 
-                
-            }
-            
+              
             
         }
         
         
-    }
     
-    public static void main(String[] args){
-        MyDeque<Integer> DEQ1 = new MyDeque<Integer>();
-        DEQ1.addLast(4);
-        DEQ1.addFirst(14);
-         System.out.println(DEQ1);
-        DEQ1.addLast(7);
-        DEQ1.addFirst(9);
-         System.out.println(DEQ1);
-        DEQ1.addFirst(10);
-        DEQ1.addLast(3);
-        DEQ1.addLast(2);
-        DEQ1.addLast(3);
-        System.out.println(DEQ1);
-        System.out.println(DEQ1.getFirst());
-        System.out.println(DEQ1.getLast());
-        
-         System.out.println(DEQ1);
-		System.out.println(DEQ1.removeLast());
-        
-         System.out.println(DEQ1);
-        
-        System.out.println(DEQ1.removeFirst());
-        
-         System.out.println(DEQ1);
-        
-        
-    }
+
 
 
 
